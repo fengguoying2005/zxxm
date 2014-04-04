@@ -1,0 +1,148 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib uri="/gwintag" prefix="gwintag"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<base href="<%=basePath%>">
+		<title>增加用户</title>
+
+		<link rel="stylesheet" href="resource/css/component.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="resource/css/grid.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="resource/css/forms.css" type="text/css" media="screen">
+		<style type="text/css">
+@import "resource/css/jquery.datepick.css";
+</style>
+		<SCRIPT type="text/javascript" src="js/tablecloth.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="js/jquery-1.4.2.min.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="js/gwinsoft.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="js/jquery.gwinsoft.js"></SCRIPT>
+		<script type="text/javascript" src="js/jquery.datepick.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#CS_RQ').datepick({yearRange: 'c-50:c+10',showOnFocus:true,triggerImage:'images/calendar.gif',fixedWeeks:true,dateFormat: 'yyyy-mm-dd',showTrigger:'#aaaaa'});
+			});
+			function next(event) {
+				var isOk = true;
+				if(event=="saveAddUser") {
+					isOk = $().requireds();
+				}
+				if(isOk) {
+					var frm = document.myform;
+					frm.action="<%=basePath%>qxgl/user!"+event+".action";
+					frm.submit();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form id="myform" name="myform" action="" method="post">
+			<div class="container" class="span-24">
+				<s:actionerror id="sysactionerror" />
+				<fieldset >
+					<legend>增加用户</legend>
+				<div class="span-22">
+					<div class="span-11">
+						<div>
+							<label class="width2" for="ACCOUNT">
+								帐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号
+							</label>
+							<s:textfield cssClass="text" id="ACCOUNT" name="user.ACCOUNT"
+								requireds="true" labels="帐号" requiredsLength="5,30" pattern=""></s:textfield>
+						</div>
+						<div>
+							<label class="width2" for="PASSWORD">
+								密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码
+							</label>
+							<s:textfield cssClass="text" id="PASSWORD" name="user.PASSWORD"
+								requireds="true" labels="密码"></s:textfield>
+						</div>
+						<div>
+							<label for="EMAIL">
+								邮件地址
+							</label>
+							<s:textfield cssClass="text" id="EMAIL" name="user.EMAIL"
+								requireds="true" labels="邮件地址" requiredsType="email"></s:textfield>
+						</div>
+						<div>
+							<label for="PHONE">
+								电话号码
+							</label>
+							<s:textfield cssClass="text" id="PHONE" name="user.PHONE"
+								requireds="true" labels="电话号码"></s:textfield>
+						</div>
+						<div>
+							<label class="width1" for="SFZHM">
+								身份证&nbsp;&nbsp;&nbsp;
+							</label>
+							<s:textfield cssClass="text" id="SFZHM" name="user.SFZHM"
+								requireds="true" labels="身份证"></s:textfield>
+						</div>
+					</div>
+					<div class="span-11 last">
+						<div>
+							<label class="width2" for="TRUENAME">
+								姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
+							</label>
+							<s:textfield cssClass="text" id="TRUENAME" name="user.TRUENAME"
+								requireds="true" labels="姓名"></s:textfield>
+						</div>
+						<div>
+							<label class="width2" for="MZ">
+								民&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;族
+							</label>
+							<s:select cssClass="text" id="MZ" name="user.MZ" list="#{1:'汉族',2:'蒙古族',3:'回族',4:'藏族',5:'维吾尔族',6:'苗族',7:'彝族',8:'壮族',9:'布依族',10:'朝鲜族',11:'满族',12:'侗族',13:'瑶族',14:'白族',15:'土家族',16:'哈尼族',17:'哈萨克族',18:'傣族',19:'黎族',20:'傈僳族',21:'佤族',22:'畲族',23:'高山族',24:'拉祜族',25:'水族',26:'东乡族',27:'纳西族',28:'景颇族',29:'柯尔克孜族',30:'土族',31:'达斡尔族',32:'仫佬族',33:'羌族',34:'布朗族',35:'撒拉族',36:'毛南族',37:'仡佬族',38:'锡伯族',39:'阿昌族',40:'普米族',41:'塔吉克族',42:'怒族',43:'乌孜别克族',44:'俄罗斯族',45:'鄂温克族',46:'德昂族',47:'保安族',48:'裕固族',49:'京族',50:'塔塔尔族',51:'独龙族',52:'鄂伦春族',53:'赫哲族',54:'门巴族',55:'珞巴族',56:'基诺族'}"></s:select>
+						</div>
+						<div>
+							<label for="CS_RQ">
+								出生日期
+							</label>
+							<s:textfield cssClass="text" id="CS_RQ" name="user.CS_RQ"
+								requireds="true" labels="出生日期"></s:textfield>
+						</div>
+						<div>
+							<label for="YZBM">
+								邮政编码
+							</label>
+							<s:textfield cssClass="text" id="YZBM" name="user.YZBM"
+								requireds="true" labels="邮政编码" requiredsType="number" requiredsLength="6,6"></s:textfield>
+						</div>
+						<div>
+							<label class="width2" for="XB">
+								性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别
+							</label>
+							<s:radio list="#{0:'男',1:'女'}" name="user.XB"></s:radio>
+						</div>
+						<div>
+							<label for=YX_BJ>
+								有效标记
+							</label>
+							<s:checkboxlist list="#{1:''}" name="user.YX_BJ"></s:checkboxlist>
+						</div>
+					</div>
+				</div>
+					<div class="span-22">
+						<span>
+							<label for="LXDZ" cssClass="span-4">
+								联系地址
+							</label>
+							<s:textfield cssClass="text" id="LXDZ" name="user.LXDZ"
+								requireds="true" labels="联系地址"></s:textfield>
+						</span>
+					</div>
+				<div align="right" class="span-22">
+					<input type="button" value="保存" onClick="next('saveAddUser')"  class="buttonface"/>
+					<input type="button" value="返回" onClick="next('backUser')"  class="buttonface"/>
+				</div>
+				</fieldset>
+			</div>
+		</form>
+	</body>
+</html>

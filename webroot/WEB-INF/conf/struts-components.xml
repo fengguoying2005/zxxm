@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="/ajax" extends="json-default">
+		<action name="ajax_*" class="ajaxAction" method="{1}">
+			<result type="json"></result>
+		</action>
+		<action name="authtree" class="authtreeaction">
+			<result type="json"></result>
+		</action>
+		<action name="roletree" class="roletreeaction">
+			<result type="json"></result>
+		</action>
+		<action name="liandong" class="liandongaction">
+			<result type="json"></result>
+		</action>
+		<action name="usertree" class="usertreeaction">
+			<result type="json"></result>
+		</action>
+		<action name="msggetter" class="msggetteraction">
+			<result type="json"></result>
+			<result name="print">/PrintServiceAction2.action</result>
+		</action>
+		<action name="PrintServiceAction2" class="printServiceAction">
+		</action>
+		<action name="loginyzm" class="loginaction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="/nsrgl" namespace="/nsrgl" extends="default">
+		<!-- 纳税人 -->
+		<action name="nsrjbxx" class="nsrjbxxaction">
+			<result name="list">/nsrgl/nsrjbxx/NsrjbxxList.jsp</result>
+			<result name="add">/nsrgl/nsrjbxx/NsrjbxxAdd.jsp</result>
+			<result name="mod">/nsrgl/nsrjbxx/NsrjbxxMod.jsp</result>
+			<result name="see">/nsrgl/nsrjbxx/NsrjbxxSee.jsp</result>
+		</action>
+		<action name="nsrimport" class="nsrimportaction">
+			<param name="savePath">/upload</param>
+			<result name="success">/nsrgl/nsrimport/nsrimport.jsp</result>
+		</action>
+		<action name="nsrexport" class="nsrimportaction">
+			<param name="templatePosition">
+			</param>
+			<result type="stream" name="success">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">
+					attachment;filename=${excelFileName}
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<!-- 纳税人群组 -->
+		<action name="nsrgroup" class="nsrgroupaction">
+			<result name="list">/nsrgl/nsrgroup/NsrgroupList.jsp</result>
+			<result name="add">/nsrgl/nsrgroup/NsrgroupAdd.jsp</result>
+			<result name="mod">/nsrgl/nsrgroup/NsrgroupMod.jsp</result>
+			<result name="see">/nsrgl/nsrgroup/NsrgroupSee.jsp</result>
+			<result name="seemx">/nsrgl/nsrgroup/NsrgroupMXSee.jsp</result>
+		</action>
+		<!-- 短信发送 -->
+		<action name="nsrdx" class="nsrdxaction">
+			<result name="list">/nsrgl/nsrdx/NsrdxList.jsp</result>
+			<result name="add">/nsrgl/nsrdx/NsrdxAdd.jsp</result>
+			<result name="mod">/nsrgl/nsrdx/NsrdxMod.jsp</result>
+			<result name="see">/nsrgl/nsrdx/NsrdxSee.jsp</result>
+			<result name="seemx">/nsrgl/nsrdx/NsrdxMXSee.jsp</result>
+		</action>
+	</package>
+	<package name="/nsrsms" namespace="/nsrsms" extends="default">
+		<action name="cbimport" class="cbimportaction">
+			<param name="savePath">/upload</param>
+			<result name="success">/nsrsms/cbimport/cbimport.jsp</result>
+		</action>
+		<action name="cbexport" class="cbimportaction">
+			<param name="templatePosition">
+			</param>
+			<result type="stream" name="success">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">
+					attachment;filename=${excelFileName}
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<action name="cjimport" class="cjimportaction">
+			<param name="savePath">/upload</param>
+			<result name="success">/nsrsms/cjimport/cjimport.jsp</result>
+		</action>
+		<action name="cjexport" class="cjimportaction">
+			<param name="templatePosition">
+			</param>
+			<result type="stream" name="success">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">
+					attachment;filename=${excelFileName}
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<!-- 纳税人群组 -->
+		<action name="group" class="groupaction">
+			<result name="list">/nsrsms/group/GroupList.jsp</result>
+			<result name="add">/nsrsms/group/GroupAdd.jsp</result>
+			<result name="mod">/nsrsms/group/GroupMod.jsp</result>
+			<result name="see">/nsrsms/group/GroupSee.jsp</result>
+		</action>
+		<!-- 短信发送 -->
+		<action name="smssend" class="smssendaction">
+			<result name="list">/nsrsms/smssend/SmssendList.jsp</result>
+			<result name="add">/nsrsms/smssend/SmssendAdd.jsp</result>
+			<result name="mod">/nsrsms/smssend/SmssendMod.jsp</result>
+			<result name="see">/nsrsms/smssend/SmssendSee.jsp</result>
+		</action>
+	</package>
+	<package name="/orgsms" namespace="/orgsms" extends="default">
+		<!-- 机构群组 -->
+		<action name="orggroup" class="orggroupaction">
+			<result name="list">/orgsms/orggroup/OrggroupList.jsp</result>
+			<result name="add">/orgsms/orggroup/OrggroupAdd.jsp</result>
+			<result name="mod">/orgsms/orggroup/OrggroupMod.jsp</result>
+			<result name="see">/orgsms/orggroup/OrggroupSee.jsp</result>
+		</action>
+		<!-- 短信发送 -->
+		<action name="orgsmssend" class="orgsmssendaction">
+			<result name="list">/orgsms/orgsmssend/OrgsmssendList.jsp</result>
+			<result name="add">/orgsms/orgsmssend/OrgsmssendAdd.jsp</result>
+			<result name="mod">/orgsms/orgsmssend/OrgsmssendMod.jsp</result>
+			<result name="see">/orgsms/orgsmssend/OrgsmssendSee.jsp</result>
+			<result name="seecallback">/orgsms/orgsmssend/OrgsmssendSeeCallback.jsp
+			</result>
+		</action>
+	</package>
+	<package name="/czysms" namespace="/czysms" extends="default">
+		<!-- 机构群组 -->
+		<action name="czygroup" class="czygroupaction">
+			<result name="list">/czysms/czygroup/CzygroupList.jsp</result>
+			<result name="add">/czysms/czygroup/CzygroupAdd.jsp</result>
+			<result name="mod">/czysms/czygroup/CzygroupMod.jsp</result>
+			<result name="see">/czysms/czygroup/CzygroupSee.jsp</result>
+		</action>
+		<!-- 短信发送 -->
+		<action name="czysmssend" class="czysmssendaction">
+			<result name="list">/czysms/czysmssend/CzysmssendList.jsp</result>
+			<result name="add">/czysms/czysmssend/CzysmssendAdd.jsp</result>
+			<result name="mod">/czysms/czysmssend/CzysmssendMod.jsp</result>
+			<result name="see">/czysms/czysmssend/CzysmssendSee.jsp</result>
+			<result name="seecallback">/czysms/czysmssend/CzysmssendSeeCallback.jsp
+			</result>
+		</action>
+	</package>
+	<!-- 机构群组 -->
+	<package name="/smssh" namespace="/smssh" extends="default">
+		<!-- 短信审核 -->
+		<action name="sh" class="shaction">
+			<result name="list">/smssh/sh/ShList.jsp</result>
+			<result name="add">/smssh/sh/ShAdd.jsp</result>
+			<result name="mod">/smssh/sh/ShMod.jsp</result>
+			<result name="see">/smssh/sh/ShSee.jsp</result>
+		</action>
+	</package>
+	<package name="/xtgl" namespace="/xtgl" extends="default">
+		<!-- 短信签名 -->
+		<action name="dxqm" class="dxqmaction">
+			<result name="list">/xtgl/dxqm/DxqmList.jsp</result>
+			<result name="add">/xtgl/dxqm/DxqmAdd.jsp</result>
+			<result name="mod">/xtgl/dxqm/DxqmMod.jsp</result>
+			<result name="see">/xtgl/dxqm/DxqmSee.jsp</result>
+		</action>
+		<!-- 短信模板 -->
+		<action name="dxmb" class="dxmbaction">
+			<result name="list">/xtgl/dxmb/DxmbList.jsp</result>
+			<result name="add">/xtgl/dxmb/DxmbAdd.jsp</result>
+			<result name="mod">/xtgl/dxmb/DxmbMod.jsp</result>
+			<result name="see">/xtgl/dxmb/DxmbSee.jsp</result>
+		</action>
+		<!-- 短信参数 -->
+		<action name="dxcs" class="dxcsaction">
+			<result name="list">/xtgl/dxcs/DxcsList.jsp</result>
+			<result name="add">/xtgl/dxcs/DxcsAdd.jsp</result>
+			<result name="mod">/xtgl/dxcs/DxcsMod.jsp</result>
+			<result name="see">/xtgl/dxcs/DxcsSee.jsp</result>
+		</action>
+		<!-- 职务代码 -->
+		<action name="zw" class="zwaction">
+			<result name="list">/xtgl/zw/ZwList.jsp</result>
+			<result name="add">/xtgl/zw/ZwAdd.jsp</result>
+			<result name="mod">/xtgl/zw/ZwMod.jsp</result>
+			<result name="see">/xtgl/zw/ZwSee.jsp</result>
+		</action>
+		<!-- 黑名单 -->
+		<action name="hmd" class="hmdaction">
+			<result name="list">/xtgl/hmd/HmdList.jsp</result>
+			<result name="see">/xtgl/hmd/HmdNsrSee.jsp</result>
+		</action>
+		<action name="task" class="taskaction">
+			<result name="list">/xtgl/task/TaskList.jsp</result>
+			<result name="add">/xtgl/task/TaskAdd.jsp</result>
+			<result name="mod">/xtgl/task/TaskMod.jsp</result>
+			<result name="see">/xtgl/task/TaskSee.jsp</result>
+		</action>
+		<!-- 短信模板 -->
+		<action name="dxmb2" class="dxmb2action">
+			<result name="list">/xtgl/dxmb2/Dxmb2List.jsp</result>
+			<result name="add">/xtgl/dxmb2/Dxmb2Add.jsp</result>
+			<result name="mod">/xtgl/dxmb2/Dxmb2Mod.jsp</result>
+			<result name="see">/xtgl/dxmb2/Dxmb2See.jsp</result>
+		</action>
+	</package>
+	<package name="/tjfx" namespace="/tjfx" extends="default">
+		<!-- 短信统计 -->
+		<action name="dxtj" class="dxtjaction">
+			<result name="list">/tjfx/dxtj/DxtjList.jsp</result>
+		</action><!-- 短信记录 -->
+		<action name="business" class="businessaction">
+			<result name="list">/tjfx/business/BusinessList.jsp</result>
+			<result name="add">/tjfx/business/BusinessAdd.jsp</result>
+			<result name="mod">/tjfx/business/BusinessMod.jsp</result>
+			<result name="see">/tjfx/business/BusinessSee.jsp</result>
+		</action>
+	</package>
+	<package name="/qxgl" namespace="/qxgl" extends="default"><!-- 图片验证码 -->
+		<action name="listauth" class="listauthbean">
+			<!-- list -->
+			<result name="listAuth">/qxgl/auth/qxglAuthList.jsp</result>
+			<result name="addAuth">/qxgl/auth/qxglAuthAdd.jsp</result>
+			<result name="delAuth">/qxgl/auth/qxglAuthList.jsp</result>
+			<result name="modAuth">/qxgl/auth/qxglAuthMod.jsp</result>
+			<result name="seeAuth">/qxgl/auth/qxglAuthSee.jsp</result>
+			<!-- add -->
+			<result name="saveAddAuth">/qxgl/auth/qxglAuthAdd.jsp</result>
+			<result name="backAuth">/qxgl/auth/qxglAuthList.jsp</result>
+			<!-- modify -->
+			<result name="saveModAuth">/qxgl/auth/qxglAuthMod.jsp</result>
+		</action>
+
+		<action name="user" class="useraction">
+			<result name="list">/qxgl/user/UserList.jsp</result>
+			<result name="add">/qxgl/user/UserAdd.jsp</result>
+			<result name="mod">/qxgl/user/UserMod.jsp</result>
+			<result name="see">/qxgl/user/UserSee.jsp</result>
+		</action>
+		<action name="user2" class="user2action">
+			<result name="list">/qxgl/user2/UserList.jsp</result>
+			<result name="add">/qxgl/user2/UserAdd.jsp</result>
+			<result name="mod">/qxgl/user2/UserMod.jsp</result>
+			<result name="see">/qxgl/user2/UserSee.jsp</result>
+			<result name="importExcel">/qxgl/user2/UserImport.jsp</result>
+		</action>
+
+		<action name="user2import" class="user2action">
+			<param name="savePath">/upload</param>
+			<result name="success">/qxgl/user2/UserImport.jsp</result>
+		</action>
+		<action name="user2export" class="user2action">
+			<param name="templatePosition">
+			</param>
+			<result type="stream" name="success">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">
+					attachment;filename=${excelFileName}
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+
+		<action name="role" class="roleaction">
+			<result name="list">/qxgl/role/qxglRoleList.jsp</result>
+			<result name="add">/qxgl/role/qxglRoleAdd.jsp</result>
+			<result name="mod">/qxgl/role/qxglRoleMod.jsp</result>
+			<result name="see">/qxgl/role/qxglRoleSee.jsp</result>
+			<result name="assignAuth">/qxgl/role/qxglRoleAssignAuth.jsp</result>
+		</action>
+
+		<action name="org" class="orgaction">
+			<result name="list">/qxgl/org/OrgList.jsp</result>
+			<result name="add">/qxgl/org/OrgAdd.jsp</result>
+			<result name="mod">/qxgl/org/OrgMod.jsp</result>
+			<result name="see">/qxgl/org/OrgSee.jsp</result>
+		</action>
+		<action name="group" class="groupaction">
+			<result name="list">/qxgl/group/qxglGroupList.jsp</result>
+			<result name="add">/qxgl/group/qxglGroupAdd.jsp</result>
+			<result name="mod">/qxgl/group/qxglGroupMod.jsp</result>
+			<result name="see">/qxgl/group/qxglGroupSee.jsp</result>
+		</action>
+
+		<action name="validateimage" class="com.gwinsoft.framework.web.action.ImageAction">
+			<result name="image" type="ValidateImage" />
+			<!-- 不进行权限控制 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="cache"
+			class="com.gwinsoft.components.qxgl.cache.CacheManageAction">
+			<result name="list">/qxgl/cache/qxglCacheList.jsp</result>
+			<result name="clearCache">/qxgl/cache/qxglCacheList.jsp</result>
+		</action>
+
+		<action name="calendar" class="calendaraction">
+			<result name="list">/qxgl/calendar/calendar.jsp</result>
+		</action>
+
+		<action name="djhx" class="djhxaction">
+			<result name="list">/qxgl/djhx/DjhxList.jsp</result>
+		</action>
+	</package>
+	<package name="/comtwo" namespace="/comtwo" extends="default">
+		<!-- 催报提醒 -->
+		<action name="cbtx" class="cbtxaction">
+			<result name="list">/comtwo/cbtx/CbtxList.jsp</result>
+			<result name="add">/comtwo/cbtx/CbtxAdd.jsp</result>
+			<result name="mod">/comtwo/cbtx/CbtxMod.jsp</result>
+			<result name="see">/comtwo/cbtx/CbtxSee.jsp</result>
+		</action>
+		<!-- 催缴提醒 -->
+		<action name="cjtx" class="cjtxaction">
+			<result name="list">/comtwo/cjtx/CjtxList.jsp</result>
+			<result name="add">/comtwo/cjtx/CjtxAdd.jsp</result>
+			<result name="mod">/comtwo/cjtx/CjtxMod.jsp</result>
+			<result name="see">/comtwo/cjtx/CjtxSee.jsp</result>
+		</action>
+		<!-- 缴款提醒 -->
+		<action name="jktx" class="jktxaction">
+			<result name="list">/comtwo/jktx/JktxList.jsp</result>
+			<result name="add">/comtwo/jktx/JktxAdd.jsp</result>
+			<result name="mod">/comtwo/jktx/JktxMod.jsp</result>
+			<result name="see">/comtwo/jktx/JktxSee.jsp</result>
+		</action>
+		<!-- 扣款失败提醒 -->
+		<action name="kksbtx" class="kksbtxaction">
+			<result name="list">/comtwo/kksbtx/KksbtxList.jsp</result>
+			<result name="add">/comtwo/kksbtx/KksbtxAdd.jsp</result>
+			<result name="mod">/comtwo/kksbtx/KksbtxMod.jsp</result>
+			<result name="see">/comtwo/kksbtx/KksbtxSee.jsp</result>
+		</action>
+		<!-- 购买发票提醒 -->
+		<action name="gmfptx" class="gmfptxaction">
+			<result name="list">/comtwo/gmfptx/GmfptxList.jsp</result>
+			<result name="add">/comtwo/gmfptx/GmfptxAdd.jsp</result>
+			<result name="mod">/comtwo/gmfptx/GmfptxMod.jsp</result>
+			<result name="see">/comtwo/gmfptx/GmfptxSee.jsp</result>
+		</action>
+		<!-- 停业到期提醒 -->
+		<action name="tydqtx" class="tydqtxaction">
+			<result name="list">/comtwo/tydqtx/TydqtxList.jsp</result>
+			<result name="add">/comtwo/tydqtx/TydqtxAdd.jsp</result>
+			<result name="mod">/comtwo/tydqtx/TydqtxMod.jsp</result>
+			<result name="see">/comtwo/tydqtx/TydqtxSee.jsp</result>
+		</action>
+		<!-- 发票真伪查询 -->
+		<action name="fpzwcx" class="fpzwcxaction">
+			<result name="list">/comtwo/fpzw/FpzwcxList.jsp</result>
+			<result name="add">/comtwo/fpzw/FpzwcxAdd.jsp</result>
+			<result name="mod">/comtwo/fpzw/FpzwcxMod.jsp</result>
+			<result name="see">/comtwo/fpzw/FpzwcxSee.jsp</result>
+		</action>
+		<!-- 发票中奖查询 -->
+		<action name="fpzjcx" class="fpzjcxaction">
+			<result name="list">/comtwo/fpzj/FpzjcxList.jsp</result>
+			<result name="add">/comtwo/fpzj/FpzjcxAdd.jsp</result>
+			<result name="mod">/comtwo/fpzj/FpzjcxMod.jsp</result>
+			<result name="see">/comtwo/fpzj/FpzjcxSee.jsp</result>
+		</action>
+		<!-- 税费查询记录 -->
+		<action name="sfcx" class="sfcxaction">
+			<result name="list">/comtwo/sfcx/SfcxList.jsp</result>
+			<result name="add">/comtwo/sfcx/SfcxAdd.jsp</result>
+			<result name="mod">/comtwo/sfcx/SfcxMod.jsp</result>
+			<result name="see">/comtwo/sfcx/SfcxSee.jsp</result>
+		</action>
+		<!-- 中奖内容维护 -->
+		<action name="fpzjwh" class="fpzjwhaction">
+			<result name="list">/comtwo/fpzjwh/FpzjwhList.jsp</result>
+			<result name="add">/comtwo/fpzjwh/FpzjwhAdd.jsp</result>
+			<result name="mod">/comtwo/fpzjwh/FpzjwhMod.jsp</result>
+			<result name="see">/comtwo/fpzjwh/FpzjwhSee.jsp</result>
+		</action>
+		<!-- 投诉举报 -->
+		<action name="tsjb" class="tsjbaction">
+			<result name="list">/comtwo/tsjb/TsjbList.jsp</result>
+			<result name="add">/comtwo/tsjb/TsjbAdd.jsp</result>
+			<result name="mod">/comtwo/tsjb/TsjbMod.jsp</result>
+			<result name="see">/comtwo/tsjb/TsjbSee.jsp</result>
+		</action>
+		<!-- 问卷调查 -->
+		<action name="wjdc" class="wjdcaction">
+			<result name="list">/comtwo/wjdc/WjdcList.jsp</result>
+			<result name="add">/comtwo/wjdc/WjdcAdd.jsp</result>
+			<result name="mod">/comtwo/wjdc/WjdcMod.jsp</result>
+			<result name="see">/comtwo/wjdc/WjdcSee.jsp</result>
+			<result name="send">/comtwo/wjdc/WjdcSend.jsp</result>
+		</action>
+		<!-- 协议定制 -->
+		<action name="xydz" class="xydzaction">
+			<result name="list">/comtwo/xydz/XydzList.jsp</result>
+			<result name="add">/comtwo/xydz/XydzAdd.jsp</result>
+			<result name="mod">/comtwo/xydz/XydzMod.jsp</result>
+			<result name="see">/comtwo/xydz/XydzSee.jsp</result>
+		</action>
+	</package>
+</struts>    

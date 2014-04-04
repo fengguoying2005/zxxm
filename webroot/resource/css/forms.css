@@ -1,0 +1,271 @@
+/* --------------------------------------------------------------
+
+   forms.css
+   * Sets up some default styling for forms
+   * Gives you classes to enhance your forms
+
+   Usage:
+   * For text fields, use class .title or .text
+   * For inline forms, use .inline (even when using columns)
+
+-------------------------------------------------------------- */
+/*
+  A special hack is included for IE8 since it does not apply padding
+  correctly on fieldsets
+ */
+/*
+   ÐÂÎÅÄ£¿é
+*/
+ul.newsul {
+	padding: 0px;
+	margin: 0;
+	width: 300px; /**no**/
+}
+
+ul li.newsli {
+	height: 25px;
+	margin: 0px 0;
+	font-size: 0; /**yes**/
+}
+
+a.newscontent {
+	float: left; /**yes**/
+	max-width: 16em; /**yes**/
+	white-space: nowrap; /**yes**/
+	text-overflow: ellipsis; /**yes**/
+	overflow: hidden; /**yes**/
+	font-size: 14px;
+	padding: 0;
+	text-decoration: underline;
+	color: #093D72;
+}
+
+a.newscontent:link,a.newscontent:visited,a.newscontent:active,a.unvisited:link,a.unvisited:visited,a.boldthirteen:link,a.boldthirteen:visited
+	{
+	color: #093D72;
+	text-decoration: underline;
+	outline: 0;
+}
+
+a.newsdate {
+	float: right;
+	font-size: 12px;
+}
+
+.newsTitle {
+	background: url(../images/newsTitle.gif) repeat-x;
+	height: 29px;
+	font-size: 14px;
+	padding: 5px 0 0 5px;
+	position: relative;
+	z-index: -1;
+}
+
+.newsTitle .more {
+	margin-left: 180px;
+	text-decoration: underline;
+}
+
+label {
+	font-weight: normal;
+	vertical-align: middle;
+	line-height:inherit;
+	height: 30px;
+}
+.titlebar {
+	height:30px;
+	padding: 0em 2em 0.2em 2em;
+	border: 2px solid #ddd;
+	background: #d5edf8;
+	color: #205791;
+	border-color: #92cae4;
+}
+td label {
+	font-weight: normal;
+}
+
+.colorblue {
+	color: blue;
+}
+
+.colorbblue {
+	color: #364C74;
+}
+
+.subnav {
+	height: 24px;
+	background: #E0ECFF;
+	border: 1px solid #B2C9F1;
+}
+
+fieldset {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	border: 1px solid #CCC;
+	padding-bottom: 1em;
+	padding-top: 1em;
+	padding-left: 1.4em;
+}
+
+legend {
+	font-weight: bold;
+	font-size: 1.8em;
+	margin-top: -0.2em;
+	margin-bottom: 1em;
+	color:#000080;
+	padding-top:0;
+	padding-bottom:10px;
+	margin-left:10%;
+	/**text-align:center; width:200px; border:1px solid #CCC;margin-left:40%;**/
+}
+
+.fieldset {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	border: 1px solid #CCC;
+	padding-bottom: 1.4em;
+	padding-top: 1.4em;
+	padding-left: 1.4em;
+}
+
+.fieldset2 {
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	margin: 0 0 0 0;
+	border: 1px solid #CCC;
+}
+
+.subnav .left {
+	width: 435px;
+}
+
+.subnav .right {
+	width: 435px;
+}
+
+.left,.center,.right {
+	float: left;
+	display: block;
+	overflow: hidden;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+fieldset,#IE8#HACK {
+	padding-top: 1.4em;
+}
+
+legend,#IE8#HACK {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/* Form fields
+-------------------------------------------------------------- */
+/*
+  Attribute selectors are used to differentiate the different types
+  of input elements, but to support old browsers, you will have to
+  add classes for each one. ".title" simply creates a large text
+  field, this is purely for looks.
+ */
+input[type=text],input[type=password],input[type=url],input[type=email],input.text,input.title,textarea
+	{
+	background-color: #fff;
+	border: 1px solid #bbb;
+	color: #000;
+	width: 
+}
+.subinput[type=text],.subinput[type=password],.subinput[type=url],.subinput[type=email],.subinput.text,.subinput.title
+{
+	margin: 0em 0;
+}
+input[type=text]:focus,input[type=password]:focus,input[type=url]:focus,input[type=email]:focus,input.text:focus,input.title:focus,textarea:focus
+	{
+	border-color: #666;
+}
+
+select {
+	background-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input[type=text],input[type=password],input[type=url],input[type=email],input.text,input.title,textarea,select
+	{
+	margin: 0.2em 0;
+}
+
+input.text,input.title {
+	width: 200px;
+	padding: 3px;
+}
+
+input.title {
+	font-size: 1.5em;
+}
+
+textarea {
+	width: 390px;
+	height: 250px;
+	padding: 5px;
+}
+
+/*
+  This is to be used on forms where a variety of elements are
+  placed side-by-side. Use the p tag to denote a line.
+ */
+form.inline {
+	line-height: 3;
+}
+
+form.inline p {
+	margin-bottom: 0;
+}
+
+/* Success, info, notice and error/alert boxes
+-------------------------------------------------------------- */
+.error,.alert,.notice,.success,.info {
+	padding: 0.8em;
+	margin-bottom: 1em;
+	border: 2px solid #ddd;
+}
+
+.error,.alert {
+	background: #fbe3e4;
+	color: #8a1f11;
+	border-color: #fbc2c4;
+}
+
+.notice {
+	background: #fff6bf;
+	color: #514721;
+	border-color: #ffd324;
+}
+
+.success {
+	background: #e6efc2;
+	color: #264409;
+	border-color: #c6d880;
+}
+
+.info {
+	background: #d5edf8;
+	color: #205791;
+	border-color: #92cae4;
+}
+
+.error a,.alert a {
+	color: #8a1f11;
+}
+
+.notice a {
+	color: #514721;
+}
+
+.success a {
+	color: #264409;
+}
+
+.info a {
+	color: #205791;
+}

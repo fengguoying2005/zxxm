@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<include file="../conf/struts-components.xml" />
+	<!-- "package" must match "(result-types?,interceptors?,default-interceptor-ref?,default-action-ref?,default-class-ref?,global-results?,global-exception-mappings?,action*)" -->
+	<package name="default" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="ValidateImage"
+				class="com.gwinsoft.framework.web.action.ImageResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="qxglInterceptor"
+				class="com.gwinsoft.framework.filter.QxglInterceptor" />
+			<interceptor-stack name="qxglStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="qxglInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="qxglStack"></default-interceptor-ref>
+		<global-results>
+			<result name="login">/login!toLogin.action</result>
+			<result name="error">/common/error.jsp</result>
+			<result name="welcome">/common/welcome.jsp</result>
+			<result name="help">/common/help.jsp</result>
+			<result name="printService">/PrintServiceAction.action</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+		<action name="wellcome">
+			<result>/qxglLogin.jsp</result>
+		</action>
+		<action name="login" class="loginaction">
+			<result name="toLogin">/qxglLogin.jsp</result>
+			<result name="login">/index.jsp</result>
+			<result name="logout">/qxglLogin.jsp</result>
+			<result name="moidfypwd">/moidfypwd.jsp</result>
+			<!-- 不进行权限控制 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="PrintServiceAction" class="printServiceAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+</struts>    

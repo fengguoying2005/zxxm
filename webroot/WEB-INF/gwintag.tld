@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>2.1.1</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>gwintag</short-name>
+	<uri>/gwintag</uri>
+	<display-name>"gwinsoft Tags"</display-name>
+	<tag>
+		<name>menu</name>
+		<tag-class>com.gwinsoft.framework.taglib.menu.GwinMenuTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>nowMenu1</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>nowMenu2</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>page</name>
+		<tag-class>com.gwinsoft.framework.taglib.splitpage.PageTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>pageBeanName</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>theme</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>includes</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>topmenu</name>
+		<tag-class>com.gwinsoft.framework.taglib.menu.TopMenuTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>leftmenu</name>
+		<tag-class>com.gwinsoft.framework.taglib.menu.LeftMenuTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>selecthp</name>
+		<tag-class>com.gwinsoft.framework.taglib.select.SelectHpTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+</taglib>

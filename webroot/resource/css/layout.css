@@ -1,0 +1,212 @@
+
+h1,h2,h3,h4,h5,h6,form{padding:0;margin:0;}
+
+/**分页标签的链接样式**/
+.aStyle a:link,.aStyle a:visited{color: #069;text-decoration:underline;}
+/**弹出层**/
+#popupbg {
+	background-color: #666666;
+	position: absolute;
+	z-index: 99;
+	left: 0;
+	top: 0;
+	display: none;
+	width: 100%;
+	height: 10px;
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.5;
+}
+#popupdiv {
+	position: absolute;
+	width: 244px;
+	left: 50%;
+	top: 50%;
+	height: auto;
+	z-index: 100;
+	background-color: #fff;
+	border: 1px #8FA4F5 solid;
+	padding: 1px;
+}
+#popupdiv h2 {
+	height: 25px;
+	font-size: 14px;
+	background-color: #8FA4F5;
+	position: relative;
+	padding-left: 10px;
+	line-height: 25px;
+}
+#popupdiv h2 a {
+	position: absolute;
+	right: 5px;
+	font-size: 12px;
+	color: #FF0000
+}
+/**弹出层**/
+#popupbg2 {
+	background-color: #666666;
+	position: absolute;
+	z-index: 99;
+	left: 0;
+	top: 0;
+	display: none;
+	width: 100%;
+	height: 10px;
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.5;
+}
+#popupdiv2 {
+	position: absolute;
+	width: 244px;
+	left: 50%;
+	top: 50%;
+	height: auto;
+	z-index: 100;
+	background-color: #fff;
+	border: 1px #8FA4F5 solid;
+	padding: 1px;
+}
+#popupdiv2 h2 {
+	height: 25px;
+	font-size: 14px;
+	background-color: #8FA4F5;
+	position: relative;
+	padding-left: 10px;
+	line-height: 25px;
+}
+#popupdiv2 h2 a {
+	position: absolute;
+	right: 5px;
+	font-size: 12px;
+	color: #FF0000
+}
+.error, .notice, .success, .info, .errorMessage {padding:0.2em;margin-bottom:0.5em;border:2px solid #ddd;}
+.error, .errorMessage {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+.success, .actionMessage {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+.buttontext {padding:0.1em;margin-bottom:0.1em;border:2px solid #ddd;background:#e6efc2;color:#264409;border-color:#c6d880;}
+.error a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}
+
+/* table */
+tr.even td {
+	/*background: #FDFDFA;
+	background-color: #EEEEFF;
+	background-color: #eeffee;*/
+	background-color: #FFFFFF;
+}
+tr.odd td {
+	/*background: #F6F5EC;
+	background-color: #DDDDFF;
+	background-color: #ddffdd;*/
+	background-color: #F5F5F5;
+}
+table.record-list {
+	border-collapse: collapse;
+	width: 100%;
+}
+table.record-list thead th {
+	/*background-color: #ddddff;*/
+	background-color: #D0E4FE;
+	color: #000;
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #bbb;
+}
+table.record-list tfoot td,table.record-list tfoot th {
+	font-style: normal;
+	font-weight: normal;
+	border-top: 1px solid #ccc;
+	padding: 4px 0;
+	color: #000;
+}
+table.record-list tbody td {
+	border: 1px solid #ccc;
+}
+table.record-list tbody tr:hover td {
+	background: #ddd;
+}
+
+body { font-family:"微软雅黑",arial, sans-serif;color: #000; font-size:14px; margin:0; line-height:150%;background:#FFFFFF;}
+a:link, a:visited { color: #666; text-decoration:none;}
+a:hover, a:active { color: #333; text-decoration:none;}
+
+img {border-style:none} 
+
+#container {margin:0 auto; width:950px;}
+
+/**
+此例是当左右侧高度都不固定时，实现底部平齐的方法。目前采用背景图片的方法是最简单和快捷的方法了。制作一个和sidebar宽度相同、颜色相同的1px高背景图片，把它应用在mainContent上，然后向y轴方向重复，采用欺骗的方式来实现未知高度底部平齐，当然还有很多种其它的解决方法。细心的朋友可能已经发现，在mainContent样式表里有个 overflow:auto;zoom:1;的属性，overflow:auto;是让mainContent来自适应内部容器的高度，zoom:1;是为了兼容IE6而使用的CSS HACK。zoom:1;通不过W3C的验证，这也是遗憾的一点，幸好IE支持<!--[if IE]>这种写法，可以专门针对IE来写单独的样式，所以可以把这个属性写在页面内的<!--[if IE]>中，这样应该可以通过验证了。
+*/
+#mainContent { background:#FFFFFF; overflow:auto;zoom:1; margin-bottom:10px;}
+#content { float:left; width:730px; padding:10px; background:#FFFFFF;border:1px solid #ccc; }
+#footer { font-family: "微软雅黑",arial, sans-serif;text-align:right;border-top:1px solid #ccc;height:60px; line-height:28px; margin:20px auto;font:12px/1.5 Arial;}
+
+.clearfloat { clear:both; height:0; font-size: 1px; line-height: 0px;margin-bottom:10px;}
+
+/**页眉100%宽度*/
+#siteNav { background-color:#F4F4F4; border-top:1px solid #ccc; border-bottom:1px solid #ccc; height:26px; line-height:28px; margin:0px auto;}
+#loginInfo {margin:0 auto; width:950px;font-size: 12px;}
+#loginInfo a:link,#loginInfo a:visited{ color: #4a628d;}
+#loginInfo a:hover,#loginInfo a:active{ color: #f0830f; text-decoration:underline;}
+#loginInfo2 {float:right; width:220px;font-size: 12px;text-align:right;}
+#loginInfo2 a:link,#loginInfo a:visited{ color: #4a628d;}
+#loginInfo2 a:hover,#loginInfo a:active{ color: #f0830f; text-decoration:underline;}
+
+/**
+LOGO
+*/
+#header { float: left;width: 300px;height: 80px;background: url(../images/logo.gif) no-repeat 0 0;overflow: hidden;margin-top: 0; }
+#headerLink { display: block;width: 300px;height: 80px;text-indent: -999px;}
+#siteNav2 { height:80px; margin:0px auto;}
+#siteNav2_in {margin:0 auto; width:950px;font-size: 12px;}
+/**靠右    字体居中 **/
+#siteNav2_in2 {float:right; width:650px;font-size: 12px;text-align:right;height:78px;line-height:98px;overflow:hidden;}
+
+/**
+导航条
+*/
+#menu { height:30px; background:#364C74; margin-bottom:10px;}
+.menu {font-size:14px;font-family: "微软雅黑","黑体","宋体",arial, sans-serif; width:950px; padding:0;margin:0;}
+
+.menu ul {padding:0; margin:0;list-style-type: none;}
+.menu ul li {float:left; position:relative;}
+.menu ul li a, .menu ul li a:visited {display:block; text-align:center; text-decoration:none; width:114px; height:30px; color:#FFF; border:1px solid #ccc;border-width:0px 0px 0px 0px;line-height:30px; font-size:1em;}
+.haveNodes {background:url(../images/newMenu.gif) no-repeat;}
+.hide {background:url(../images/newMenu1.gif) no-repeat;}
+.menu ul li ul {display: none;}
+.menu ul li:hover a,.menu ul li a.sel {color:#FFFFFF; background:url(../images/newMenu2.gif) no-repeat;}
+.menu ul li:hover ul {display:block; position:absolute; top:30px; left:0; width:105px; z-index: 9999;}
+.menu ul li:hover ul li a {display:block; background:#364C74; color:#FFF;}
+.menu ul li:hover ul li a:hover,.menu ul li:hover ul li a.nowMenu {background:url(../images/newMenu2.gif) no-repeat; color:#FFFFFF;}
+
+/**侧边栏边界是0，因为下面有边界图片*/
+#sidebar { float:right; width:200px; border:0px solid #ccc; background:#FFFFFF;}
+/*----------------标题----------------*/
+.titles{ background:url(../images/titlesbg.gif) 0 -35px repeat-x; height:35px; line-height:35px; position:relative; text-align:left;}
+.titles h2{ color:#4b628c; display:block; font-size:14px; margin:0 0 0 15px;}
+.titles h2 span{ font-size:12px; font-weight:normal;}
+span.lb{ background:url(../images/titlesbg.gif) 0 0 no-repeat; display:block; height:35px; width:3px; position:absolute; left:0; top:0;}
+span.rb{ background:url(../images/titlesbg.gif) 0 -70px no-repeat; display:block; height:35px; width:3px; position:absolute; right:0; top:0;}
+.wrap{ border-left:1px solid #cfd3dd; border-right:1px solid #cfd3dd; border-bottom:1px solid #cfd3dd; min-height:50px; position:relative;}
+span.ld{ background:url(../images/wrapbg.gif) 0 0 no-repeat; display:block; height:2px; width:2px; position:absolute; left:-1px; bottom:-1px;}
+span.rd{ background:url(../images/wrapbg.gif) -2px 0 no-repeat; display:block; height:2px; width:2px; position:absolute; right:-1px; bottom:-1px;}
+/**>*/
+a.astyle01{ background:url(../images/sprites.gif) -94px -23px no-repeat; display:block; font-size:12px; font-weight:normal; height:35px; line-height:35px; padding:0 0 0 10px; text-decoration:underline; position:absolute; right:10px; top:0;}
+a.astyle01:link,a.astyle01:visited{ color:#4b628c;}
+a.astyle01:hover,a.astyle01:active{ color:#ff6600;}
+ul { margin:0; padding:0; list-style:none;}
+#sidebar ul{ padding:12px 0 10px 0; overflow:hidden;}
+/**>*/
+#sidebar li { background:url(../images/sprites.gif) -82px -32px no-repeat; height:18px; line-height:18px; overflow:hidden;}
+#sidebar li h4 { font-size:12px; font-weight:normal; margin:0 0 0 28px; line-height:18px; text-align:left; overflow:hidden;}
+#sidebar a{ overflow:hidden;}
+#bulletinWrap a,#shopexNewsWrap a{ display:block; padding:0 5px 0 0; background:url(../images/sprites.gif) no-repeat right bottom; _width:163px; overflow:hidden;}
+#sidebar a:link, #sidebar a:visited { color: #4b628c;}
+#sidebar a:hover,#sidebar a:active  { color: #f0830f;}
+#sidebar li span { color:#4b628c; display:inline; float:right; margin:0 12px 0 20px; _width:30px;}
+
+/**幻灯片*/

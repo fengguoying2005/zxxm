@@ -1,0 +1,162 @@
+DATE_FORMAT(SYSDATE,'%Y-%m-%d') ->TO_CHAR(SYSDATE,'YYYY-MM-DD')
+CONCAT
+UUID()  -> SYS_GUID()
+@rownum -> ROWNUM
+NOW()   -> SYSDATE
+LIMIT   -> ROWNUM
+SUBSTRING ->SUBSTR
+DUAL
+23:59:59
+TO_CHAR(T.LR_SJ, 'YYYY-MM-DD HH24:MI:SS')
+TO_DATE('"+time+"','YYYY-MM-DD HH24:MI:SS')
+from dual
+
+
+TODO：
+列表上未显示日期；
+
+
+1、创建表空间
+（system用户登录后创建）
+CREATE TABLESPACE TAX
+DATAFILE 'C:\app\Administrator\oradata\orcl\TAX.DBF' 
+SIZE 500M 
+AUTOEXTEND ON 
+NEXT 100M MAXSIZE 20000M
+EXTENT MANAGEMENT LOCAL;
+
+alter TABLESPACE TAX add DATAFILE 'C:\app\Administrator\oradata\testtest\TAX2.DBF' size 20000M;
+
+
+2、创建用户
+（system用户登录后创建）
+create user UTAX
+  default tablespace TAX
+  temporary tablespace TEMP
+  profile DEFAULT
+  IDENTIFIED BY pass123;
+grant connect to UTAX;
+grant dba to UTAX;
+grant resource to UTAX;
+grant create any table to UTAX;
+grant create any view to UTAX;
+grant delete any table to UTAX;
+grant execute any class to UTAX;
+grant execute any procedure to UTAX;
+grant insert any table to UTAX;
+grant select any dictionary to UTAX;
+grant select any sequence to UTAX;
+grant select any table to UTAX;
+grant select any transaction to UTAX;
+grant unlimited tablespace to UTAX;
+grant update any table to UTAX;
+
+3、建表、视图、函数、过程
+
+CREATE OR REPLACE PROCEDURE "UTAX"."GEN_SFXCMSG" (THEYEAR IN VARCHAR2) AS
+TABLENAME VARCHAR(20) := 'SMS_SFXCMSG';
+NOWTABLENAME VARCHAR(20);
+C_SQL VARCHAR2(4000);
+I_SQL VARCHAR2(4000);
+I_NUMBER INT:=0;
+START_DATE DATE := TO_DATE(THEYEAR||'-01-01','YYYY-MM-DD');
+END_DATE DATE := TO_DATE(THEYEAR||'-12-31','YYYY-MM-DD');
+vn_ctn number(2);
+BEGIN
+  LOOP
+    I_NUMBER := I_NUMBER + 1;
+    NOWTABLENAME:=TABLENAME||TO_CHAR(START_DATE,'YYYYMMDD');
+    
+    select count(*) into vn_ctn from user_all_tables a where a.table_name like upper(NOWTABLENAME); 
+    if vn_ctn = 0 then
+        C_SQL:='CREATE TABLE '||NOWTABLENAME||' AS SELECT * FROM SMS_SFXCMSG WHERE 1=2';
+        EXECUTE IMMEDIATE C_SQL;
+        I_SQL:='alter table '||NOWTABLENAME||' add constraint PRIMARY_'||NOWTABLENAME||' primary key (SFXCMSG_LSH)';
+        EXECUTE IMMEDIATE I_SQL;
+        I_SQL:='create index IDX_'||NOWTABLENAME||'NSRBM on '||NOWTABLENAME||' (NSRBM)';
+        EXECUTE IMMEDIATE I_SQL;
+        I_SQL:='create index IDX_'||NOWTABLENAME||'DATALSH on '||NOWTABLENAME||' (NSRDATA_LSH)';
+        EXECUTE IMMEDIATE I_SQL;
+    end if;
+   
+    EXIT WHEN START_DATE>=END_DATE;
+    START_DATE:=START_DATE+1;
+  END LOOP;
+  DBMS_OUTPUT.put_line(TO_CHAR(I_NUMBER));
+END GEN_SFXCMSG;
+
+
+
+CREATE OR REPLACE PROCEDURE "UTAX"."GEN_VIEWMSG" (THEYEAR IN VARCHAR2) AS
+  TABLENAME VARCHAR(20) := 'SMS_SFXCMSG';
+  NOWTABLENAME VARCHAR(20);
+  NOWVIEW VARCHAR(20);
+  LEFTVIEW VARCHAR(20);
+  V_SQL VARCHAR2(4000);
+  C_SQL VARCHAR2(4000);
+  I_NUMBER INT:=0;
+  I_DAY INT:=0;
+  START_DATE DATE := TO_DATE(THEYEAR||'-01-01','YYYY-MM-DD');
+  END_DATE DATE := TO_DATE(THEYEAR||'-12-31','YYYY-MM-DD');
+  vn_ctn number(2);
+BEGIN
+  LOOP
+    IF LEFTVIEW IS NULL THEN
+      LEFTVIEW:='V_SMS_SFXCMSG'||TO_CHAR(START_DATE,'YYYYMM');
+    END IF;
+    NOWVIEW:='V_SMS_SFXCMSG'||TO_CHAR(START_DATE,'YYYYMM');
+    NOWTABLENAME:=TABLENAME||TO_CHAR(START_DATE,'YYYYMMDD');
+    
+    IF LEFTVIEW<>NOWVIEW THEN
+      select count(*) into vn_ctn from ALL_VIEWS a where a.VIEW_NAME like upper(LEFTVIEW);
+      if vn_ctn = 0 then
+          V_SQL:='CREATE VIEW '||LEFTVIEW||' AS ' || V_SQL;
+          --DBMS_OUTPUT.put_line(LEFTVIEW);
+          EXECUTE IMMEDIATE V_SQL;
+      end if;
+      LEFTVIEW:=NOWVIEW;
+    END IF;
+    EXIT WHEN START_DATE>END_DATE;
+    I_NUMBER := I_NUMBER + 1;
+    
+    I_DAY:=TO_NUMBER(TO_CHAR(START_DATE,'DD'));
+    IF I_DAY =1 THEN
+       V_SQL:='SELECT * FROM '||NOWTABLENAME;
+    ELSE
+       V_SQL:=(V_SQL || ' UNION ALL SELECT * FROM '||NOWTABLENAME);
+    END IF;
+    
+    START_DATE:=START_DATE+1;
+  END LOOP;
+  DBMS_OUTPUT.put_line(TO_CHAR(I_NUMBER));
+END GEN_VIEWMSG;
+
+
+
+CREATE OR REPLACE PROCEDURE "UTAX"."P_REBUILD_ALL_INDEX" 
+   (tablespace_name in varchar2,
+   only_unusable in boolean)
+as
+   sqlt varchar(200);
+begin
+    for idx in (select index_name, tablespace_name, status from user_indexes where temporary = 'N') loop
+        if only_unusable = true and idx.status <> 'UNUSABLE' then
+           goto continue;
+        end if;
+
+        if (tablespace_name is null) or idx.status = 'UNUSABLE' then
+           sqlt := 'alter index ' || idx.index_name || ' rebuild ';
+        elsif upper(tablespace_name) <> idx.tablespace_name then
+           sqlt := 'alter index ' || idx.index_name || ' rebuild tablespace ' || tablespace_name;
+        else
+           goto continue;
+        end if;
+
+        dbms_output.put_line(idx.index_name);
+        EXECUTE IMMEDIATE sqlt;
+        <<continue>>
+        null;
+     end loop;
+end;
+
+

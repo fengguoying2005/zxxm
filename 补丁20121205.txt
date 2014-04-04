@@ -1,0 +1,149 @@
+本次更新内容：
+	增加操作员短信模块
+	
+请对以上修改进行测试。
+
+
+替换版本，须修改如下
+（1）停止服务，先做好备份
+（2）重新部署或增量部署
+（3）检查web.xml的配置
+INITSMS（mas数据库地址）的数据库连接地址和用户、密码
+
+增加：
+<servlet>
+	<servlet-name>WebTaskInitial</servlet-name>
+	<servlet-class>com.gwinsoft.components2.job.WebTaskInitial</servlet-class>
+	<init-param>
+		<param-name>config</param-name>
+		<param-value>/WEB-INF/conf/quartz.properties</param-value>
+	</init-param>
+	<load-on-startup>8</load-on-startup>
+</servlet>
+	
+（4）检查applicationContext-system.xml的配置
+数据库（税务数据库）连接地址和用户、密码
+（5）登录图标的那个页面（同泽修改内容）
+（6）执行以下数据库脚本 （须确保每条执行成功）
+
+INSERT INTO DM_SMSTYPE(SMSTYPE_DM,SMSTYPE_MC) VALUES ('05','操作员短信');
+
+insert into QX_AUTH (AUTH_DM, AUTH_MC, AUTH_CC, SJ_AUTH_DM, AUTH_MS, AUTH_LJ, TARGET, XS_SX, YX_BJ, LRRY_DM, XGRY_DM, LR_SJ, XG_SJ, SFDJ_BJ)
+values ('CZYDX', '操作员短信', '1', '0', '操作员短信', '#', '_self', 2, '1', 'admin', 'admin', to_date('27-10-2012', 'dd-mm-yyyy'), to_date('19-02-2013', 'dd-mm-yyyy'), '0');
+
+insert into QX_AUTH (AUTH_DM, AUTH_MC, AUTH_CC, SJ_AUTH_DM, AUTH_MS, AUTH_LJ, TARGET, XS_SX, YX_BJ, LRRY_DM, XGRY_DM, LR_SJ, XG_SJ, SFDJ_BJ)
+values ('CZYDX_GROUP', '操作员群组管理', '2', 'CZYDX', '操作员群组管理', 'czysms/czygroup!list.action', '_self', 0, '1', 'admin', 'admin', to_date('19-02-2013', 'dd-mm-yyyy'), to_date('19-02-2013', 'dd-mm-yyyy'), '0');
+
+insert into QX_AUTH (AUTH_DM, AUTH_MC, AUTH_CC, SJ_AUTH_DM, AUTH_MS, AUTH_LJ, TARGET, XS_SX, YX_BJ, LRRY_DM, XGRY_DM, LR_SJ, XG_SJ, SFDJ_BJ)
+values ('CZYDX_SMS', '操作员短信发送', '2', 'CZYDX', '操作员短信发送', 'czysms/czysmssend!list.action', '_self', 1, '1', 'admin', 'admin', to_date('19-02-2013', 'dd-mm-yyyy'), to_date('19-02-2013', 'dd-mm-yyyy'), '0');
+
+create table CZY_GROUP
+(
+  group_lsh   VARCHAR2(50) not null,
+  org_dm_jg   VARCHAR2(20),
+  group_name  VARCHAR2(100),
+  group_count NUMBER,
+  lrry_dm     VARCHAR2(20),
+  xgry_dm     VARCHAR2(20),
+  lr_sj       DATE,
+  xg_sj       DATE
+);
+
+alter table CZY_GROUP add constraint PK_CZY_GROUP primary key (GROUP_LSH);
+
+create table CZY_GROUPMX
+(
+  groupmx_lsh VARCHAR2(50) not null,
+  group_lsh   VARCHAR2(50),
+  org_dm_jg   VARCHAR2(20),
+  org_dm_bm   VARCHAR2(100),
+  user_dm     VARCHAR2(20),
+  sjhm        VARCHAR2(20),
+  lrry_dm     VARCHAR2(20),
+  xgry_dm     VARCHAR2(20),
+  lr_sj       DATE,
+  xg_sj       DATE,
+  org_mc_jg   VARCHAR2(100),
+  org_mc_bm   VARCHAR2(100),
+  user_mc     VARCHAR2(100),
+  zw_dm       VARCHAR2(20),
+  zw_mc       VARCHAR2(100)
+);
+alter table CZY_GROUPMX
+  add constraint PK_CZY_GROUPMX primary key (GROUPMX_LSH);
+create index IDX_CZY_GROUPMX_GROUP on CZY_GROUPMX (GROUP_LSH);
+
+（7）启动服务、进行测试
+
+
+
+
+
+======================================
+上次更新内容：
+1、手机号码不能为空
+2、内部用户管理和操作员管理分开
+说明：现有的权限管理-用户管理功能变成操作员管理；新增内部用户管理功能；执行脚本后，前端须设置对应操作员的权限。
+3、登陆时候点发送验证码 没有这个用户或者该用户没有手机的时候提示
+4、内部用户群组功能修改成与纳税人群组类似效果
+
+
+1、内部群组 添加完删除人员显示删除纳税人成功，应该显示删除内部人员成功。
+2、菜单管理里内部人员那个删除不了
+3、仅省局菜单属性
+ALTER TABLE QX_AUTH ADD COLUMN SFDJ_BJ VARCHAR(1) DEFAULT '0'
+4、内部员工管理 需要加一个导入功能
+5、短信提交审核的时候 可以选择该机构下的审核人员
+ALTER TABLE SMS_NSRDATA ADD COLUMN SHY VARCHAR(20) DEFAULT ''
+注意：目前已经存在的待审批记录，需要更新SHY字段将其指定审核人员，否则该记录没有相应的审核人会看到。
+
+1内部短信发送保存以后没有选择审核人选项。直接提交后待审核里找不到该短信
+答：版本不一致导致，编辑短信没有保存前我这块没有‘提交审核’这个按钮；重新部署看看是否还是如此；
+
+2.内部人员导入，模板只导出和导入的时候只需要如下几个字段：
+用户姓名，机关，部门，职务，性别，手机号码。
+并且该几项是必填项，在内部人员添加和修改的时候这几项也是必填的。其他为不必须填写
+答：
+现保留了用户编码、用户名称，机关，部门，职务，性别，手机号码字段，其它均已去除。
+
+3.纳税人导入，模板只导出和导入的时候只需要如下几个字段：
+纳税人编码，纳税人名称，所属行业，所属市，主管纳税机关，三个手机号码，
+这几项在添加和修改的时候都是必填的，其他为非必填项目。
+纳税人所业添加修改的时候可以填写也可以下拉选择，如果手写自动加入码表中
+答：
+现保留了纳税人编码、纳税人名称、所属行业、所属市、主管税务机关、法人手机号码、财务经理手机号码、办税人员手机号码字段，其它均已去除。
+
+
+4.催报催缴短信，短信签名为必填可是不让填写。并且该页面标签名字也不对，提交审核没有任何反应
+答：短信签名为必填,该信息提取于‘系统管理-短信签名维护’功能所设置的签名，不是手动录入的。提交审核没有任何反应的原因是程序不是最新。重新部署看看是否还是如此；
+
+5.加一个模块叫中奖短信发送，里面有两个菜单一个是中奖短信直接发送，
+一个是中奖短信导入发送，页面点开显示正在建设中就可以了 
+答：执行以下SQL:
+给角色分配权限
+
+6.黑名单那边我一直回复TD到那个号码都可以，可是黑名单中一直没有扫描到退订的人员。
+答：黑名单只适用于纳税人（包括办税人、法人、财务经理），并不适用于内部人员。
+
+
+1.内部短信编辑后保存审核人显示问题；
+2.内部用户增加时，编码自动生成。
+3.组织机构排序问题,机关加排序字段
+ALTER TABLE QX_ORG ADD COLUMN JGPX VARCHAR(20) DEFAULT 'ZZZZZZZZZZ'
+4.黑名单问题
+
+1、内部用户增加、修改时隐藏‘用户编码’；
+2、用户名称相同时可以进行保存；
+3、机构有效标记不选时也能进行查询、修改；
+4、按照机构编码查询时，应该为模糊查询；
+5、黑名单短信接收，不管扩展码是否是‘6’都进行接收
+
+
+1.人员手机号码重复处理 人名和手机号 为条件 做修改
+2.人员导入机构部门不存在不予导入
+3.人员查询加入‘精确查询’功能
+
+
+分表SMS_SFXCMSG
+
+更换数据库，从mysql到oracle。

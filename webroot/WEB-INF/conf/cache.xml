@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="gb2312"?>
+<DMB>
+	<caches>
+		<cache>
+			<name>ORG_CACHE</name>
+			<cachesql>SELECT ORG_DM,ORG_MC,ORG_TYPE,ORG_DESC,SJ_ORG_DM,JGPX FROM QX_ORG WHERE YX_BJ='1' order by JGPX</cachesql>
+			<cachedm>ORG_DM</cachedm>
+			<info>机构</info>
+		</cache>
+		<cache>
+			<name>USER_CACHE</name>
+			<cachesql>SELECT USER_DM,USER_MC,PASSWORD,XB_DM,ORG_DM_JG,ORG_DM_BM,SFZHM,TEL,JG,YZBM,JTDH,EMAIL,ADDR,BZ,ZW_DM,JGPX,CZY_BJ FROM QX_USER WHERE YX_BJ='1'</cachesql>
+			<cachedm>USER_DM</cachedm>
+			<info>人员</info>
+		</cache>
+		<cache>
+			<name>ROLE_CACHE</name>
+			<cachesql>SELECT ROLE_LSH,ORG_DM_JG,ROLE_MC,ROLE_MS,YX_BJ FROM QX_ROLE WHERE YX_BJ='1'</cachesql>
+			<cachedm>ROLE_LSH</cachedm>
+			<info>角色</info>
+		</cache>
+		<cache>
+			<name>AUTH_CACHE</name>
+			<cachesql>SELECT AUTH_DM,AUTH_MC,SJ_AUTH_DM,AUTH_CC,AUTH_MS,TARGET,AUTH_LJ,XS_SX,YX_BJ,SFDJ_BJ FROM QX_AUTH WHERE YX_BJ='1'</cachesql>
+			<cachedm>AUTH_DM</cachedm>
+			<info>权限</info>
+		</cache>
+		
+		<cache>
+			<name>USER_ROLE_CACHE</name>
+			<cachesql>SELECT USER_ROLE_LSH,USER_DM,ROLE_LSH FROM QX_USER_ROLE</cachesql>
+			<cachedm>USER_ROLE_LSH</cachedm>
+			<info>用户角色</info>
+		</cache>
+		<cache>
+			<name>ROLE_AUTH_CACHE</name>
+			<cachesql>SELECT QX_ROLE.ROLE_LSH || '@' || QX_AUTH.AUTH_CC || '@' || QX_AUTH.SJ_AUTH_DM || '@' || QX_AUTH.AUTH_DM || '@' || QX_AUTH.AUTH_DM AS ROLEAUTH,QX_ROLE.ROLE_LSH,QX_ROLE.ROLE_MC,QX_AUTH.AUTH_DM,QX_AUTH.TARGET,QX_AUTH.AUTH_MC,QX_AUTH.AUTH_CC,QX_AUTH.SJ_AUTH_DM,QX_AUTH.AUTH_LJ,QX_AUTH.XS_SX FROM QX_ROLE,QX_AUTH,QX_ROLE_AUTH WHERE QX_ROLE.ROLE_LSH=QX_ROLE_AUTH.ROLE_LSH AND QX_AUTH.AUTH_DM=QX_ROLE_AUTH.AUTH_DM AND QX_ROLE.YX_BJ='1' AND QX_AUTH.YX_BJ='1'</cachesql>
+			<cachedm>ROLEAUTH</cachedm>
+			<info>所有角色权限</info>
+		</cache>
+		<cache>
+			<name>USER_AUTH_CACHE</name>
+			<cachesql>SELECT QX_USER.USER_DM||'@'||QX_AUTH.AUTH_CC||'@'||QX_AUTH.SJ_AUTH_DM||'@'||QX_AUTH.AUTH_DM||'@'||QX_AUTH.AUTH_DM AS USERAUTH,QX_USER.USER_DM,QX_USER.USER_MC,QX_AUTH.AUTH_DM,QX_AUTH.TARGET,QX_AUTH.AUTH_MC,QX_AUTH.AUTH_CC,QX_AUTH.SJ_AUTH_DM,QX_AUTH.AUTH_LJ,QX_AUTH.XS_SX FROM QX_USER,QX_AUTH,QX_USER_AUTH WHERE QX_USER.USER_DM=QX_USER_AUTH.USER_DM AND QX_AUTH.AUTH_DM=QX_USER_AUTH.AUTH_DM AND QX_AUTH.YX_BJ='1'</cachesql>
+			<cachedm>USERAUTH</cachedm>
+			<info>所有用户权限</info>
+		</cache>
+		
+		<cache>
+			<name>ORGTYPE_CACHE</name>
+			<cachesql>SELECT ORGTYPE_DM,ORGTYPE_MC FROM DM_ORGTYPE</cachesql>
+			<cachedm>ORGTYPE_DM</cachedm>
+			<info>机构类型</info>
+		</cache>
+		<cache>
+			<name>XB_CACHE</name>
+			<cachesql>SELECT XB_DM,XB_MC FROM DM_XB</cachesql>
+			<cachedm>XB_DM</cachedm>
+			<info>性别</info>
+		</cache>
+		<cache>
+			<name>SMSZT_CACHE</name>
+			<cachesql>SELECT SMSZT_DM,SMSZT_MC FROM DM_SMSZT</cachesql>
+			<cachedm>SMSZT_DM</cachedm>
+			<info>短信状态</info>
+		</cache>
+		<cache>
+			<name>SMSTYPE_CACHE</name>
+			<cachesql>SELECT SMSTYPE_DM,SMSTYPE_MC FROM DM_SMSTYPE</cachesql>
+			<cachedm>SMSTYPE_DM</cachedm>
+			<info>短信类型</info>
+		</cache>
+		<cache>
+			<name>DXQM_CACHE</name>
+			<cachesql>SELECT DXQM_DM,DXQM_MC FROM DM_DXQM</cachesql>
+			<cachedm>DXQM_DM</cachedm>
+			<info>短信签名</info>
+		</cache>
+		<cache>
+			<name>DXMB_CACHE</name>
+			<cachesql>SELECT DXMB_LSH,ORG_DM_JG,SMSTYPE_DM,DXMB_MC,INFO FROM SMS_DXMB</cachesql>
+			<cachedm>DXMB_LSH</cachedm>
+			<info>短信模板</info>
+		</cache>
+		<cache>
+			<name>DXYS_CACHE</name>
+			<cachesql>SELECT DXYS_DM,DXYS_MC FROM DM_DXYS</cachesql>
+			<cachedm>DXYS_DM</cachedm>
+			<info>短信要素</info>
+		</cache>
+		<cache>
+			<name>DXYS2_CACHE</name>
+			<cachesql>SELECT DXYS_DM,DXYS_MC FROM DM_DXYS2 WHERE YX_BJ='1'</cachesql>
+			<cachedm>DXYS_DM</cachedm>
+			<info>短信要素2</info>
+		</cache>
+		<cache>
+			<name>ORGGROUP_CACHE</name>
+			<cachesql>SELECT GROUP_LSH, ORG_DM_JG, GROUP_NAME, GROUP_COUNT, LRRY_DM, XGRY_DM, LR_SJ, XG_SJ FROM ORG_GROUP</cachesql>
+			<cachedm>GROUP_LSH</cachedm>
+			<info>内部群组</info>
+		</cache>
+		<cache>
+			<name>ORGGROUPMX_CACHE</name>
+			<cachesql>SELECT T.GROUPMX_LSH,T.GROUP_LSH,T.ORG_DM_JG,T.ORG_DM_BM,T.USER_DM,T.SJHM,T.LRRY_DM,T.XGRY_DM,T.LR_SJ,T.XG_SJ,T.ORG_MC_JG,T.ORG_MC_BM,T.USER_MC,U.JGPX,U.ZW_DM FROM ORG_GROUPMX T LEFT OUTER JOIN QX_USER U ON T.USER_DM=U.USER_DM</cachesql>
+			<cachedm>GROUPMX_LSH</cachedm>
+			<info>内部群组MX</info>
+		</cache>
+		<cache>
+			<name>CZYGROUP_CACHE</name>
+			<cachesql>SELECT GROUP_LSH, ORG_DM_JG, GROUP_NAME, GROUP_COUNT, LRRY_DM, XGRY_DM, LR_SJ, XG_SJ FROM CZY_GROUP</cachesql>
+			<cachedm>GROUP_LSH</cachedm>
+			<info>操作员群组</info>
+		</cache>
+		<cache>
+			<name>CZYGROUPMX_CACHE</name>
+			<cachesql>SELECT T.GROUPMX_LSH,T.GROUP_LSH,T.ORG_DM_JG,T.ORG_DM_BM,T.USER_DM,T.SJHM,T.LRRY_DM,T.XGRY_DM,T.LR_SJ,T.XG_SJ,T.ORG_MC_JG,T.ORG_MC_BM,T.USER_MC,U.JGPX,U.ZW_DM FROM CZY_GROUPMX T LEFT OUTER JOIN QX_USER U ON T.USER_DM=U.USER_DM</cachesql>
+			<cachedm>GROUPMX_LSH</cachedm>
+			<info>操作员群组MX</info>
+		</cache>
+		<cache>
+			<name>YYS_CACHE</name>
+			<cachesql>SELECT YYS_DM,YYS_MC FROM DM_YYS</cachesql>
+			<cachedm>YYS_DM</cachedm>
+			<info>运营商</info>
+		</cache>
+		<cache>
+			<name>YYSHD_CACHE</name>
+			<cachesql>SELECT YYSHD_DM,YYS_DM FROM DM_YYSHD</cachesql>
+			<cachedm>YYSHD_DM</cachedm>
+			<info>运营商号段</info>
+		</cache>
+		<cache>
+			<name>DXCS_CACHE</name>
+			<cachesql>SELECT YYS_DM,DXJG FROM DM_DXCS</cachesql>
+			<cachedm>YYS_DM</cachedm>
+			<info>短信参数</info>
+		</cache>
+		<cache>
+			<name>HY_CACHE</name>
+			<cachesql>SELECT HY_DM,HY_MC FROM DM_HY</cachesql>
+			<cachedm>HY_DM</cachedm>
+			<info>行业</info>
+		</cache>
+		<cache>
+			<name>SBFS_CACHE</name>
+			<cachesql>SELECT SBFS_DM,SBFS_MC FROM DM_SBFS</cachesql>
+			<cachedm>SBFS_DM</cachedm>
+			<info>申报方式</info>
+		</cache>
+		<cache>
+			<name>DJZT_CACHE</name>
+			<cachesql>SELECT DJZT_DM,DJZT_MC FROM DM_DJZT</cachesql>
+			<cachedm>DJZT_DM</cachedm>
+			<info>登记状态</info>
+		</cache>
+		<cache>
+			<name>DJLX_CACHE</name>
+			<cachesql>SELECT DJLX_DM,DJLX_MC FROM DM_DJLX</cachesql>
+			<cachedm>DJLX_DM</cachedm>
+			<info>登记类型</info>
+		</cache>
+		<cache>
+			<name>ZCLX_CACHE</name>
+			<cachesql>SELECT ZCLX_DM,ZCLX_MC FROM DM_ZCLX</cachesql>
+			<cachedm>ZCLX_DM</cachedm>
+			<info>注册类型</info>
+		</cache>
+		<cache>
+			<name>ZW_CACHE</name>
+			<cachesql>SELECT ZW_DM,ZW_MC FROM DM_ZW</cachesql>
+			<cachedm>ZW_DM</cachedm>
+			<info>职务</info>
+		</cache>
+		<cache>
+			<name>DJORG_CACHE</name>
+			<cachesql>SELECT O.ORG_DM AS DJORG_DM,O.ORG_MC AS DJORG_MC FROM QX_USER U,QX_ORG O WHERE U.ORG_DM_JG=O.ORG_DM AND U.USER_DM='admin' </cachesql>
+			<cachedm>DJORG_DM</cachedm>
+			<info>DJORG</info>
+		</cache>
+		<cache>
+			<name>DXLX_CACHE</name>
+			<cachesql>SELECT DXLX_DM,DXLX_MC FROM DM_DXLX</cachesql>
+			<cachedm>DXLX_DM</cachedm>
+			<info>短信类型</info>
+		</cache>
+		<cache>
+			<name>JSRLX_CACHE</name>
+			<cachesql>SELECT DXJSRLX_DM AS JSRLX_DM,DXJSRLX_MC AS JSRLX_MC FROM DM_JSRLX</cachesql>
+			<cachedm>JSRLX_DM</cachedm>
+			<info>接收人类型</info>
+		</cache>
+		<cache>
+			<name>DXMB2_CACHE</name>
+			<cachesql>SELECT LSH AS DXMB_DM,MBMC AS DXMB_MC,T.* FROM DX_DXMB T</cachesql>
+			<cachedm>DXMB_DM</cachedm>
+			<info>短信模板2</info>
+		</cache>
+		<cache>
+			<name>JKLX_CACHE</name>
+			<cachesql>SELECT JKLX_DM,JKLX_MC FROM DM_JKLX T</cachesql>
+			<cachedm>JKLX_DM</cachedm>
+			<info>缴款类型</info>
+		</cache>
+		<cache>
+			<name>SJSX_CACHE</name>
+			<cachesql>SELECT SJSX_DM,SJSX_MC FROM DM_SJSX T</cachesql>
+			<cachedm>SJSX_DM</cachedm>
+			<info>所属市</info>
+		</cache>
+		<cache>
+			<name>ZSXM_CACHE</name>
+			<cachesql>SELECT * FROM T_SMS_ZSXM T</cachesql>
+			<cachedm>ZSXM_DM</cachedm>
+			<info>征收项目</info>
+		</cache>
+		<cache>
+			<name>ZSPM_CACHE</name>
+			<cachesql>SELECT ZSXM_DM,ZSPM_DM,ZSPM_MC,ZSXM_DM||ZSPM_DM AS XMPM FROM T_SMS_ZSPM T</cachesql>
+			<cachedm>ZSPM_DM</cachedm>
+			<info>征收品目</info>
+		</cache>
+		<cache>
+			<name>XMPM_CACHE</name>
+			<cachesql>SELECT ZSXM_DM||ZSPM_DM AS XMPM_DM,ZSPM_MC AS XMPM_MC FROM T_SMS_ZSPM T</cachesql>
+			<cachedm>XMPM_DM</cachedm>
+			<info>项目品目</info>
+		</cache>
+	</caches>
+</DMB>
+

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- ajax -->
+	<bean id="ajaxAction" class="test.AjaxAction" scope="prototype">
+		<property name="iao" ref="ajaxIAO"></property>
+	</bean>
+	<bean id="ajaxIAO" class="test.AjaxIAO"></bean>
+	<!-- 联动 -->
+	<bean id="liandongaction" class="com.gwinsoft.components.dmb.LiandongAction"
+		scope="prototype"></bean>
+	<!-- 导出 -->
+	<bean id="printServiceAction" class="com.gwinsoft.framework.print.WebPrintServiceAction"
+		scope="prototype"></bean>
+	<!-- 登录 -->
+	<bean id="loginaction" class="com.gwinsoft.components.qxgl.login.QxglLoginAction"
+		scope="prototype">
+		<property name="iao" ref="loginIAO"></property>
+	</bean>
+	<bean id="loginIAO" class="com.gwinsoft.components.qxgl.login.QxglLoginIAO"></bean>
+
+
+	<!-- 纳税人 -->
+	<bean id="nsrjbxxaction" class="com.gwinsoft.components.nsrgl.jbxx.NsrjbxxAction"
+		scope="prototype">
+		<property name="iao" ref="nsrjbxxIAO"></property>
+	</bean>
+	<bean id="nsrjbxxIAO" class="com.gwinsoft.components.nsrgl.jbxx.NsrjbxxIAO"></bean>
+	<bean id="nsrimportaction" class="com.gwinsoft.components.nsrgl.nsrimport.NsrimportAction"
+		scope="prototype">
+		<property name="iao" ref="nsrimportIAO"></property>
+	</bean>
+	<bean id="nsrimportIAO" class="com.gwinsoft.components.nsrgl.nsrimport.NsrimportIAO"></bean>
+
+	<!-- 纳税人群组 -->
+	<bean id="nsrgroupaction" class="com.gwinsoft.components.nsrgl.nsrgroup.NsrgroupAction"
+		scope="prototype">
+		<property name="iao" ref="nsrgroupIAO"></property>
+	</bean>
+	<bean id="nsrgroupIAO" class="com.gwinsoft.components.nsrgl.nsrgroup.NsrgroupIAO"></bean>
+	<!-- 短信发送 -->
+	<bean id="nsrdxaction" class="com.gwinsoft.components.nsrgl.nsrdxfs.NsrdxAction"
+		scope="prototype">
+		<property name="iao" ref="nsrdxIAO"></property>
+	</bean>
+	<bean id="nsrdxIAO" class="com.gwinsoft.components.nsrgl.nsrdxfs.NsrdxIAO"></bean>
+
+	<!-- 纳税人 start -->
+	<bean id="cbimportaction" class="com.gwinsoft.components.nsrsms.cbimport.CbimportAction"
+		scope="prototype">
+		<property name="iao" ref="cbimportIAO"></property>
+	</bean>
+	<bean id="cbimportIAO" class="com.gwinsoft.components.nsrsms.cbimport.CbimportIAO"></bean>
+	<bean id="cjimportaction" class="com.gwinsoft.components.nsrsms.cjimport.CjimportAction"
+		scope="prototype">
+		<property name="iao" ref="cjimportIAO"></property>
+	</bean>
+	<bean id="cjimportIAO" class="com.gwinsoft.components.nsrsms.cjimport.CjimportIAO"></bean>
+
+	<!-- 纳税人群组 -->
+	<bean id="groupaction" class="com.gwinsoft.components.nsrsms.group.GroupAction"
+		scope="prototype">
+		<property name="iao" ref="groupIAO"></property>
+	</bean>
+	<bean id="groupIAO" class="com.gwinsoft.components.nsrsms.group.GroupIAO"></bean>
+	<!-- 短信发送 -->
+	<bean id="smssendaction" class="com.gwinsoft.components.nsrsms.smssend.SmssendAction"
+		scope="prototype">
+		<property name="iao" ref="smssendIAO"></property>
+	</bean>
+	<bean id="smssendIAO" class="com.gwinsoft.components.nsrsms.smssend.SmssendIAO"></bean>
+
+	<!-- 纳税人 end -->
+	<!-- 机构群组 -->
+	<bean id="orggroupaction" class="com.gwinsoft.components.orgsms.group.OrggroupAction"
+		scope="prototype">
+		<property name="iao" ref="orggroupIAO"></property>
+	</bean>
+	<bean id="orggroupIAO" class="com.gwinsoft.components.orgsms.group.OrggroupIAO"></bean>
+	<!-- 短信发送 -->
+	<bean id="orgsmssendaction"
+		class="com.gwinsoft.components.orgsms.orgsmssend.OrgsmssendAction"
+		scope="prototype">
+		<property name="iao" ref="orgsmssendIAO"></property>
+	</bean>
+	<bean id="orgsmssendIAO" class="com.gwinsoft.components.orgsms.orgsmssend.OrgsmssendIAO"></bean>
+
+	<!-- 机构群组 -->
+	<bean id="czygroupaction" class="com.gwinsoft.components.czysms.group.CzygroupAction"
+		scope="prototype">
+		<property name="iao" ref="czygroupIAO"></property>
+	</bean>
+	<bean id="czygroupIAO" class="com.gwinsoft.components.czysms.group.CzygroupIAO"></bean>
+	<!-- 短信发送 -->
+	<bean id="czysmssendaction"
+		class="com.gwinsoft.components.czysms.czysmssend.CzysmssendAction"
+		scope="prototype">
+		<property name="iao" ref="czysmssendIAO"></property>
+	</bean>
+	<bean id="czysmssendIAO" class="com.gwinsoft.components.czysms.czysmssend.CzysmssendIAO"></bean>
+
+	<!-- 短信审核 -->
+	<bean id="shaction" class="com.gwinsoft.components.smssh.sh.ShAction"
+		scope="prototype">
+		<property name="iao" ref="shIAO"></property>
+	</bean>
+	<bean id="shIAO" class="com.gwinsoft.components.smssh.sh.ShIAO"></bean>
+	<!-- 系统管理 start -->
+	<!-- 短信签名 -->
+	<bean id="dxqmaction" class="com.gwinsoft.components.xtgl.dxqm.DxqmAction"
+		scope="prototype">
+		<property name="iao" ref="dxqmIAO"></property>
+	</bean>
+	<bean id="dxqmIAO" class="com.gwinsoft.components.xtgl.dxqm.DxqmIAO"></bean>
+	<!-- 短信模板 -->
+	<bean id="dxmbaction" class="com.gwinsoft.components.xtgl.dxmb.DxmbAction"
+		scope="prototype">
+		<property name="iao" ref="dxmbIAO"></property>
+	</bean>
+	<bean id="dxmbIAO" class="com.gwinsoft.components.xtgl.dxmb.DxmbIAO"></bean>
+	<!-- 短信参数 -->
+	<bean id="dxcsaction" class="com.gwinsoft.components.xtgl.dxcs.DxcsAction"
+		scope="prototype">
+		<property name="iao" ref="dxcsIAO"></property>
+	</bean>
+	<bean id="dxcsIAO" class="com.gwinsoft.components.xtgl.dxcs.DxcsIAO"></bean>
+
+	<!-- 职务代码 -->
+	<bean id="zwaction" class="com.gwinsoft.components.xtgl.zw.ZwAction"
+		scope="prototype">
+		<property name="iao" ref="zwIAO"></property>
+	</bean>
+	<bean id="zwIAO" class="com.gwinsoft.components.xtgl.zw.ZwIAO"></bean>
+
+	<!-- 黑名单 -->
+	<bean id="hmdaction" class="com.gwinsoft.components.xtgl.hmd.HmdAction"
+		scope="prototype">
+		<property name="iao" ref="hmdIAO"></property>
+	</bean>
+	<bean id="hmdIAO" class="com.gwinsoft.components.xtgl.hmd.HmdIAO"></bean>
+
+	<bean id="taskaction" class="com.gwinsoft.components2.task.TaskAction"
+		scope="prototype">
+		<property name="iao" ref="taskIAO"></property>
+	</bean>
+	<bean id="taskIAO" class="com.gwinsoft.components2.task.TaskIAO"></bean>
+
+	<!-- 短信模板 -->
+	<bean id="dxmb2action" class="com.gwinsoft.components2.dxmb.Dxmb2Action"
+		scope="prototype">
+		<property name="iao" ref="dxmb2IAO"></property>
+	</bean>
+	<bean id="dxmb2IAO" class="com.gwinsoft.components2.dxmb.Dxmb2IAO"></bean>
+	<!-- 系统管理 end -->
+	<!-- 短信统计 -->
+	<bean id="dxtjaction" class="com.gwinsoft.components.tjfx.dxtj.DxtjAction"
+		scope="prototype">
+		<property name="iao" ref="dxtjIAO"></property>
+	</bean>
+	<bean id="dxtjIAO" class="com.gwinsoft.components.tjfx.dxtj.DxtjIAO"></bean>
+	<!-- 短信记录 -->
+	<bean id="businessaction" class="com.gwinsoft.components.tjfx.business.BusinessAction"
+		scope="prototype">
+		<property name="iao" ref="businessIAO"></property>
+	</bean>
+	<bean id="businessIAO" class="com.gwinsoft.components.tjfx.business.BusinessIAO"></bean>
+	<!-- 权限管理 -->
+	<bean id="listauthbean" class="com.gwinsoft.components.qxgl.auth.QxglAuthAction"
+		scope="prototype">
+		<property name="iao" ref="authIAO"></property>
+	</bean>
+	<bean id="authIAO" class="com.gwinsoft.components.qxgl.auth.QxglAuthIAO"></bean>
+	<!-- 用户管理 -->
+	<bean id="useraction" class="com.gwinsoft.components.qxgl.user.UserAction"
+		scope="prototype">
+		<property name="iao" ref="userIAO"></property>
+	</bean>
+	<bean id="userIAO" class="com.gwinsoft.components.qxgl.user.UserIAO"></bean>
+	<!-- 用户管理（内部） -->
+	<bean id="user2action" class="com.gwinsoft.components.qxgl.user2.User2Action"
+		scope="prototype">
+		<property name="iao" ref="user2IAO"></property>
+	</bean>
+	<bean id="user2IAO" class="com.gwinsoft.components.qxgl.user2.User2IAO"></bean>
+	<!-- 角色管理 -->
+	<bean id="roleaction" class="com.gwinsoft.components.qxgl.role.QxglRoleAction"
+		scope="prototype">
+		<property name="iao" ref="roleIAO"></property>
+	</bean>
+	<bean id="roleIAO" class="com.gwinsoft.components.qxgl.role.QxglRoleIAO"></bean>
+	<!-- 组管理 -->
+	<bean id="orgaction" class="com.gwinsoft.components.qxgl.org.OrgAction"
+		scope="prototype">
+		<property name="iao" ref="orgIAO"></property>
+	</bean>
+	<bean id="orgIAO" class="com.gwinsoft.components.qxgl.org.OrgIAO"></bean>
+	<!-- 权限树 -->
+	<bean id="authtreeaction" class="com.gwinsoft.framework.cache.gwincache.AuthTreeAction"
+		scope="prototype"></bean>
+	<!-- 角色树 -->
+	<bean id="roletreeaction" class="com.gwinsoft.framework.cache.gwincache.RoleTreeAction"
+		scope="prototype"></bean>
+	<!-- 人员树 -->
+	<bean id="usertreeaction" class="com.gwinsoft.components.common.UserTreeAction"
+		scope="prototype"></bean>
+	<bean id="msggetteraction" class="com.gwinsoft.components.common.MessageAction"
+		scope="prototype"></bean>
+
+
+	<!-- 催报提醒 -->
+	<bean id="cbtxaction" class="com.gwinsoft.components2.yw.cbtx.CbtxAction"
+		scope="prototype">
+		<property name="iao" ref="cbtxIAO"></property>
+	</bean>
+	<bean id="cbtxIAO" class="com.gwinsoft.components2.yw.cbtx.CbtxIAO"></bean>
+	<!-- 催缴提醒 -->
+	<bean id="cjtxaction" class="com.gwinsoft.components2.yw.cjtx.CjtxAction"
+		scope="prototype">
+		<property name="iao" ref="cjtxIAO"></property>
+	</bean>
+	<bean id="cjtxIAO" class="com.gwinsoft.components2.yw.cjtx.CjtxIAO"></bean>
+
+	<!-- 缴款提醒 -->
+	<bean id="jktxaction" class="com.gwinsoft.components2.yw.jktx.JktxAction"
+		scope="prototype">
+		<property name="iao" ref="jktxIAO"></property>
+	</bean>
+	<bean id="jktxIAO" class="com.gwinsoft.components2.yw.jktx.JktxIAO"></bean>
+
+	<!-- 扣款失败提醒 -->
+	<bean id="kksbtxaction" class="com.gwinsoft.components2.yw.kksbtx.KksbtxAction"
+		scope="prototype">
+		<property name="iao" ref="kksbtxIAO"></property>
+	</bean>
+	<bean id="kksbtxIAO" class="com.gwinsoft.components2.yw.kksbtx.KksbtxIAO"></bean>
+
+	<!-- 购买发票提醒 -->
+	<bean id="gmfptxaction" class="com.gwinsoft.components2.yw.gmfptx.GmfptxAction"
+		scope="prototype">
+		<property name="iao" ref="gmfptxIAO"></property>
+	</bean>
+	<bean id="gmfptxIAO" class="com.gwinsoft.components2.yw.gmfptx.GmfptxIAO"></bean>
+
+	<!-- 停业到期提醒 -->
+	<bean id="tydqtxaction" class="com.gwinsoft.components2.yw.tydqtx.TydqtxAction"
+		scope="prototype">
+		<property name="iao" ref="tydqtxIAO"></property>
+	</bean>
+	<bean id="tydqtxIAO" class="com.gwinsoft.components2.yw.tydqtx.TydqtxIAO"></bean>
+
+	<!-- 发票真伪查询 -->
+	<bean id="fpzwcxaction" class="com.gwinsoft.components2.yw.fpzw.FpzwcxAction"
+		scope="prototype">
+		<property name="iao" ref="fpzwcxIAO"></property>
+	</bean>
+	<bean id="fpzwcxIAO" class="com.gwinsoft.components2.yw.fpzw.FpzwcxIAO"></bean>
+
+	<!-- 发票中奖查询 -->
+	<bean id="fpzjcxaction" class="com.gwinsoft.components2.yw.fpzj.FpzjcxAction"
+		scope="prototype">
+		<property name="iao" ref="fpzjcxIAO"></property>
+	</bean>
+	<bean id="fpzjcxIAO" class="com.gwinsoft.components2.yw.fpzj.FpzjcxIAO"></bean>
+
+	<!-- 税费查询记录 -->
+	<bean id="sfcxaction" class="com.gwinsoft.components2.yw.sfcx.SfcxAction"
+		scope="prototype">
+		<property name="iao" ref="sfcxIAO"></property>
+	</bean>
+	<bean id="sfcxIAO" class="com.gwinsoft.components2.yw.sfcx.SfcxIAO"></bean>
+
+	<!-- 中奖内容维护 -->
+	<bean id="fpzjwhaction" class="com.gwinsoft.components2.yw.fpzjwh.FpzjwhAction"
+		scope="prototype">
+		<property name="iao" ref="fpzjwhIAO"></property>
+	</bean>
+	<bean id="fpzjwhIAO" class="com.gwinsoft.components2.yw.fpzjwh.FpzjwhIAO"></bean>
+	<!-- 投诉举报 -->
+	<bean id="tsjbaction" class="com.gwinsoft.components2.yw.tsjb.TsjbAction"
+		scope="prototype">
+		<property name="iao" ref="tsjbIAO"></property>
+	</bean>
+	<bean id="tsjbIAO" class="com.gwinsoft.components2.yw.tsjb.TsjbIAO"></bean>
+	<!-- 问卷调查 -->
+	<bean id="wjdcaction" class="com.gwinsoft.components2.yw.wjdc.WjdcAction"
+		scope="prototype">
+		<property name="iao" ref="wjdcIAO"></property>
+	</bean>
+	<bean id="wjdcIAO" class="com.gwinsoft.components2.yw.wjdc.WjdcIAO"></bean>
+	<!-- 协议定制 -->
+	<bean id="xydzaction" class="com.gwinsoft.components2.yw.xydz.XydzAction"
+		scope="prototype">
+		<property name="iao" ref="xydzIAO"></property>
+	</bean>
+	<bean id="xydzIAO" class="com.gwinsoft.components2.yw.xydz.XydzIAO"></bean>
+</beans>

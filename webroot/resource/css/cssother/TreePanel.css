@@ -1,0 +1,36 @@
+.Tree {
+
+	height:381px;
+	background: url(img/zTreeDemo_background.png) no-repeat;
+	padding:20px 0 0 20px;
+}
+.TreePanel {
+	font-size: 12px; color: #666; font-family: verdana, geneva, arial, helvetica, sans-serif; white-space: nowrap;
+	width:210px;
+	height:340px;
+	overflow-x:scroll;
+	overflow-y:scroll;
+	/*border:1px solid #ccc;-->*/
+	padding:0;
+}
+.TreePanel div img {
+	border-right: 0px; border-top: 0px; vertical-align: middle; border-left: 0px; border-bottom: 0px;padding:0;margin:0;
+}
+.TreePanel div a {
+	color: #333; text-decoration: none;padding:0;margin:0;
+}
+.TreePanel div a.node {
+	padding-right: 2px; padding-left: 2px; padding-bottom: 0px; padding-top: 0px; white-space: nowrap
+}
+.TreePanel div a.nodesel {
+	padding-right: 2px; padding-left: 2px; padding-bottom: 0px; padding-top: 0px; white-space: nowrap
+}
+.TreePanel div a.node:hover {
+	font-weight: bold; color: #333; text-decoration: none
+}
+.TreePanel div a.nodesel:hover {
+	font-weight: bold; color: #333; text-decoration: none
+}
+.TreePanel div a.nodesel {
+	background-color: #c0d2ec
+}
